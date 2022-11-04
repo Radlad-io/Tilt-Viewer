@@ -11,6 +11,12 @@ export default class Renderer {
     this.scene = this.experience.scene;
     this.camera = this.experience.camera;
 
+    this.debug = this.experience.debug;
+
+    if (this.debug.active) {
+      this.debugFolder = this.debug.ui.addFolder("Scene");
+    }
+
     this.setInstance();
   }
 
@@ -25,12 +31,44 @@ export default class Renderer {
     this.instance.toneMappingExposure = 1.75;
     this.instance.shadowMap.enabled = true;
     this.instance.shadowMap.type = THREE.PCFSoftShadowMap;
-    this.instance.setClearColor("#211d20");
+    this.instance.setClearColor("#aaaaaa");
     this.instance.setSize(this.sizes.width, this.sizes.height);
     this.instance.setPixelRatio(Math.min(this.sizes.pixelRatio, 2));
+    this.setGridHelper();
+    this.setDebug();
     if (this.vr) {
       this.instance.xr.enabled = true;
       document.body.appendChild(VRButton.createButton(this.instance));
+    }
+  }
+
+  setGridHelper() {
+    this.size = 10;
+    this.divisions = 10;
+    this.gridHelper = new THREE.GridHelper(this.size, this.divisions);
+    this.scene.add(this.gridHelper);
+  }
+
+  removeGridHelper() {
+    this.scene.remove(this.gridHelper);
+  }
+
+  setDebug() {
+    if (this.debug.active) {
+      const debugObject = {
+        bgColor: "#aaaaaa",
+        showGrid: true,
+      };
+      this.debugFolder.addColor(debugObject, "bgColor").onChange((value) => {
+        this.instance.setClearColor(value);
+      });
+      this.debugFolder.add(debugObject, "showGrid").onChange((value) => {
+        if (value) {
+          this.setGridHelper();
+        } else {
+          this.removeGridHelper();
+        }
+      });
     }
   }
 

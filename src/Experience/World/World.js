@@ -2,9 +2,7 @@ import * as THREE from "three";
 import Experience from "@Experience/Experience.js";
 
 import Environment from "@World/Environment.js";
-import Floor from "@World/Floor";
-import VideoSphere from "@World/VideoSphere.js";
-import Fox from "@World/Fox";
+import Tilt from "@World/Tilt";
 
 export default class World {
   constructor() {
@@ -13,16 +11,10 @@ export default class World {
     this.resources = this.experience.resources;
 
     this.resources.on("loaded", () => {
-      this.floor = new Floor();
-      this.fox = new Fox();
+      this.tilt = new Tilt();
       this.enviorment = new Environment();
-      this.videoSphere = new VideoSphere();
     });
   }
 
-  update() {
-    if (this.fox) {
-      this.fox.update();
-    }
-  }
+  update() {}
 }
