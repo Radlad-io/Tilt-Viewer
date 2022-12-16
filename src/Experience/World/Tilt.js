@@ -5,12 +5,13 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { GLTFGoogleTiltBrushMaterialExtension } from "three-icosa/dist/three-icosa.module.js";
 
 export default class Tilt {
-  constructor() {
+  constructor(file) {
     this.experience = new Experience();
     this.scene = this.experience.scene;
     this.resources = this.experience.resources;
     this.time = this.experience.time;
     this.loader = new GLTFLoader();
+    this.file = file;
 
     this.debug = this.experience.debug;
     if (this.debug.active) {
@@ -28,9 +29,10 @@ export default class Tilt {
           "../../textures/brushes/"
         )
     );
-    this.loader.load("models/Pallet/pallet.glb", (model) => {
-      model.scene.position.set(2, -3.5, 4.5);
-      model.scene.scale.set(4, 4, 4);
+    this.loader.load(this.file, (model) => {
+      model.scene.position.set(2, -20, 1.25);
+      model.scene.scale.set(13.5, 13.5, 13.5);
+      model.scene.rotation.set(0, Math.PI / 1.25, 0);
       model.scene.name = "TiltModel";
       this.scene.add(model.scene);
       this.setDebug();

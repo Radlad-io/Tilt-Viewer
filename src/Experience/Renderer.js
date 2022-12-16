@@ -31,10 +31,9 @@ export default class Renderer {
     this.instance.toneMappingExposure = 1.75;
     this.instance.shadowMap.enabled = true;
     this.instance.shadowMap.type = THREE.PCFSoftShadowMap;
-    this.instance.setClearColor("#aaaaaa");
+    this.instance.setClearColor("#000000");
     this.instance.setSize(this.sizes.width, this.sizes.height);
     this.instance.setPixelRatio(Math.min(this.sizes.pixelRatio, 2));
-    this.setGridHelper();
     this.setDebug();
     if (this.vr) {
       this.instance.xr.enabled = true;
@@ -56,8 +55,8 @@ export default class Renderer {
   setDebug() {
     if (this.debug.active) {
       const debugObject = {
-        bgColor: "#aaaaaa",
-        showGrid: true,
+        bgColor: "#000000",
+        showGrid: false,
       };
       this.debugFolder.addColor(debugObject, "bgColor").onChange((value) => {
         this.instance.setClearColor(value);

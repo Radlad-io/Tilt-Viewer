@@ -18,6 +18,7 @@ dl,
 dd {
   margin: 0;
   padding: 0;
+  font-family: 'Share Tech Mono', monospace;
 }
 
 /* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
@@ -80,4 +81,47 @@ select {
 .webgl {
   margin: 0;
   padding: 0;
+}
+
+.uploader{
+  position: fixed;
+  top:0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  z-index: 99999;
+  /* display: none; */
+}
+
+.hide{
+  display: none;
+}
+
+h1 {
+  font-size: 4rem;
+  text-align: center;
+}
+
+p{
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+input{
+  margin: 50px 25px;
+}
+
+input::file-selector-button {
+  background: black;
+  color: white;
+  font-family:  'Share Tech Mono', monospace;
+  border: none;
+  padding: 10px 15px;
+  margin-right: 20px;
+  border-radius: 2px;
 }

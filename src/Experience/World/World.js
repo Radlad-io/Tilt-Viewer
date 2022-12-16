@@ -2,7 +2,6 @@ import * as THREE from "three";
 import Experience from "@Experience/Experience.js";
 
 import Environment from "@World/Environment.js";
-import Tilt from "@World/Tilt";
 
 export default class World {
   constructor() {
@@ -11,7 +10,6 @@ export default class World {
     this.resources = this.experience.resources;
 
     this.resources.on("loaded", () => {
-      this.tilt = new Tilt();
       this.enviorment = new Environment();
     });
   }
